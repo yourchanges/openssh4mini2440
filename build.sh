@@ -15,10 +15,16 @@ cdir=`pwd`
 #clean
 rm -rf ssh_*
 rm -rf openssh
+rm -rf target_board
 rm -rf zlib-1.2.8
 rm -rf openssl-1.0.1i
 rm -rf openssh-6.7p1
 mkdir -p openssh
+mkdir -p target_board/lib
+mkdir -p target_board/usr/sbin
+mkdir -p target_board/usr/local/bin
+mkdir -p target_board/usr/libexec
+mkdir -p target_board/usr/local/etc
 
 #download package
 #wget http://www.zlib.net/zlib-1.2.8.tar.gz
@@ -39,7 +45,17 @@ cd zlib-1.2.8
 make clean
 ./configure --prefix=$cdir/openssh/zlib
 make
+
+if [  "XX$?" != "XX0"  ]; then
+	echo "zlib make error!"
+fi
+
 make install
+
+if [  "XX$?" != "XX0"  ]; then
+	echo "zlib make install error!"
+fi
+
 cd -
 
 
@@ -70,7 +86,13 @@ export MAKEDEPPROG=gcc
 export LIBDIR=lib
 
 make
+if [  "XX$?" != "XX0"  ]; then
+	echo "openssl make error!"
+fi
 make install
+if [  "XX$?" != "XX0"  ]; then
+	echo "openssl make install error!"
+fi
 cd -
 
 #build openssh
@@ -85,3 +107,12 @@ ssh-keygen -t rsa1 -f ssh_host_key -N ""
 ssh-keygen -t rsa -f ssh_host_rsa_key -N ""
 ssh-keygen -t dsa -f ssh_host_dsa_key -N ""
 
+#install
+sleep 1
+
+cp openssh/zlib/lib/libz.so.1 target_board/lib/
+cp openssh-6.7p1/sshd target_board/usr/sbin/
+cp openssh-6.7p1/{scp,sftp,ssh,ssh-add,ssh-agent,ssh-keygen,ssh-keyscan} target_board/usr/local/bin/
+cp openssh-6.7p1/{sftp-server,ssh-keysign} target_board/usr/libexec/
+cp openssh-6.7p1/{sshd_config,ssh_config} target_board/usr/local/etc/
+cp ssh_host_* target_board/usr/local/etc/
