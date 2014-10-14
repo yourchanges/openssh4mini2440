@@ -32,6 +32,7 @@ target_board dir Details:
 	│   └── libz.so.1.2.8
 	└── usr/
 		├── libexec/
+		│   ├── moduli
 		│   ├── sftp-server
 		│   └── ssh-keysign
 		├── local/
@@ -62,6 +63,11 @@ target_board dir Details:
 Execute the command on target board shell:
 
 	ln -s /lib/libz.so.1.2.8  /lib/libz.so.1
+	chmod +x /usr/local/bin/*
+	chmod +x /usr/sbin/sshd
+	chmod +x /ur/libexec/*
+	chmod 600 /usr/local/etc/ssh_host_*_key
+	
 
 Add line in to to target board file /etc/passwd:
 

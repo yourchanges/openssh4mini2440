@@ -113,6 +113,6 @@ sleep 1
 cp openssh/zlib/lib/libz.so.1.2.8 target_board/lib/
 cp openssh-6.7p1/sshd target_board/usr/sbin/
 cp openssh-6.7p1/{scp,sftp,ssh,ssh-add,ssh-agent,ssh-keygen,ssh-keyscan} target_board/usr/local/bin/
-cp openssh-6.7p1/{sftp-server,ssh-keysign} target_board/usr/libexec/
+cp openssh-6.7p1/{sftp-server,ssh-keysign,moduli} target_board/usr/libexec/
 cp openssh-6.7p1/{sshd_config,ssh_config} target_board/usr/local/etc/
 cp ssh_host_* target_board/usr/local/etc/
