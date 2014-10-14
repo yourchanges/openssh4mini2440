@@ -100,6 +100,9 @@ cd openssh-6.7p1
 make clean
 ./configure --host=arm-linux --with-libs --with-zlib=$cdir/openssh/zlib --with-ssl-dir=$cdir/openssh/openssl --disable-etc-default-login CC=arm-linux-gcc AR=arm-linux-ar
 make
+if [  "XX$?" != "XX0"  ]; then
+	echo "openssh make  error!"
+fi
 cd -
 
 #generate ssh-key
