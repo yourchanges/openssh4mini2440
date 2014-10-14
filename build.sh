@@ -110,7 +110,7 @@ ssh-keygen -t dsa -f ssh_host_dsa_key -N ""
 #install
 sleep 1
 
-cp openssh/zlib/lib/libz.so.1 target_board/lib/
+cp openssh/zlib/lib/libz.so.1.2.8 target_board/lib/
 cp openssh-6.7p1/sshd target_board/usr/sbin/
 cp openssh-6.7p1/{scp,sftp,ssh,ssh-add,ssh-agent,ssh-keygen,ssh-keyscan} target_board/usr/local/bin/
 cp openssh-6.7p1/{sftp-server,ssh-keysign} target_board/usr/libexec/
