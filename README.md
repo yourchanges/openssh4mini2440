@@ -79,3 +79,6 @@ Add line in to to target board file /etc/passwd:
      Starting sshd on target board:  # /usr/sbin/sshd
      On host marchine $ ssh root@192.168.1.133
 
+## 4. Others
+
+	To get old one, go to https://code.google.com/p/openssh4mini2440/
